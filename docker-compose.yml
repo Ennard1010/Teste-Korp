@@ -11,7 +11,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U korp"]
+      test: ["CMD-SHELL", "pg_isready -U korp -d korp_db"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -26,7 +26,7 @@ services:
       DB_PORT: 5432
       DB_USER: korp
       DB_PASSWORD: korp123
-      DB_NAME: korp_estoque
+      DB_NAME: korp_db
       PORT: 8081
     depends_on:
       postgres:
@@ -43,7 +43,7 @@ services:
       DB_PORT: 5432
       DB_USER: korp
       DB_PASSWORD: korp123
-      DB_NAME: korp_faturamento
+      DB_NAME: korp_db
       ESTOQUE_SERVICE_URL: http://estoque-service:8081
       PORT: 8082
     depends_on:
